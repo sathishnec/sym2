@@ -135,6 +135,36 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // acme_store_homepage
+        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_store_homepage')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\DefaultController::indexAction',));
+        }
+
+        // acme_store_create
+        if ($pathinfo === '/create') {
+            return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\DefaultController::createAction',  '_route' => 'acme_store_create',);
+        }
+
+        // acme_store_show
+        if (0 === strpos($pathinfo, '/show') && preg_match('#^/show/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_store_show')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\DefaultController::showAction',));
+        }
+
+        // acme_store_update
+        if (0 === strpos($pathinfo, '/delete') && preg_match('#^/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_store_update')), array (  '_controller' => 'Acme\\StoreBundle\\Controller\\DefaultController::deleteAction',));
+        }
+
+        // acme_store_query
+        if ($pathinfo === '/query') {
+            return array (  '_controller' => 'Acme\\StoreBundle\\Controller\\DefaultController::queryAction',  '_route' => 'acme_store_query',);
+        }
+
+        // acme_helllo_homepage
+        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_helllo_homepage')), array (  '_controller' => 'Acme\\HellloBundle\\Controller\\DefaultController::indexAction',));
+        }
+
         // _welcome
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {

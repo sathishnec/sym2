@@ -1,0 +1,12 @@
+acme_task_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: AcmeTaskBundle:Default:index }
+
+
+acme_task_new:
+    pattern:  /new
+    defaults: { _controller: AcmeTaskBundle:Default:new }
+
+acme_task_success:
+    pattern:  /success
+    defaults: { _controller: AcmeTaskBundle:Default:success }

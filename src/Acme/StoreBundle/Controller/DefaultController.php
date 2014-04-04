@@ -4,6 +4,7 @@ namespace Acme\StoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Acme\StoreBundle\Entity\Product;
+use Acme\StoreBundle\Entity\Category;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
@@ -124,5 +125,38 @@ class DefaultController extends Controller
 
 
     	return $this->render('AcmeStoreBundle:Default:query.html.twig', array('products' => $products));
+    }
+
+    public function createProductCatAction()
+    {
+    	$category = new Category();
+    	$category->setName('Main Products');
+
+    	$product = new Product();
+    	$product->setName('Foo');
+    	$product->setPrice(199.99);
+    	$product->setDescription('Test product and category addition');
+    	$product->setCategory($category);
+
+    	$em = $this->getDoctrine()->getManager();
+    	$em->persist($category);
+    	$em->persist($product);
+    	$em->flush();
+
+    	return new Response(
+    		'Created product id: '.$product->getId()
+    		.' and category id: '.$category->getId()
+    		);
+    }
+
+    public function showpcAction($id)
+    {
+    	$product = $this->getDoctrine()
+    				->getRepository('AcmeStoreBundle:Product')
+    				->find($id);
+
+    	$categoryName = $product->getCategory()->getName();
+
+    	return new Response('Category name '.$categoryName);
     }
 }

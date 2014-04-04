@@ -21,3 +21,15 @@ acme_store_update:
 acme_store_query:
     pattern:  /query
     defaults: { _controller: AcmeStoreBundle:Default:query }
+
+acme_store_addpc:
+    pattern:  /addpc
+    defaults: { _controller: AcmeStoreBundle:Default:createProductCat }
+
+acme_store_showpc:
+    pattern:  /showpc/{id}
+    defaults: { _controller: AcmeStoreBundle:Default:showpc }
+
+acme_store_valaut:
+    pattern:  /valaut
+    defaults: { _controller: AcmeStoreBundle:Validation:index }

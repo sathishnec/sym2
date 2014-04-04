@@ -1,0 +1,5 @@
+# src/Acme/BlogBundle/Resources/config/validation.yml
+Acme\StoreBundle\Entity\Author:
+    properties:
+        name:
+            - NotBlank: ~
